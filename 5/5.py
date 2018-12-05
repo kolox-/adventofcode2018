@@ -1,5 +1,6 @@
 import sys
 import re
+import time
 from string import ascii_lowercase
 
 def annihilates(first, second):
@@ -29,8 +30,11 @@ def react_polymer(polymer, ignored_chars=''):
 polymer = sys.stdin.readline()
 
  # Star 1
+start = time.time()
 stack = react_polymer(polymer)
-print("Star1: Polymer of length {} reacts to become length {}".format(len(polymer), len(stack)))
+
+mid = time.time()
+print("Star1: Polymer of length {} reacts to become length {}. Took {}s".format(len(polymer), len(stack), mid-start))
 
 # Star 2
 min_ = len(stack)
@@ -40,4 +44,5 @@ for char in ascii_lowercase:
         min_ = length
         min_char = char
 
-print("Star2: After removing pair {}, the polymer reacts to become length {}".format(min_char + min_char.upper(), min_))
+finish = time.time()
+print("Star2: After removing pair {}, the polymer reacts to become length {}. Took {}s".format(min_char + min_char.upper(), min_, finish-mid))
